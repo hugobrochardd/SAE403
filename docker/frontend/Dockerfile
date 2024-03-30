@@ -4,9 +4,6 @@ FROM node:20
 # Set working directory
 WORKDIR /app
 
-# Copy the application files
-COPY ./frontend/ .
-
 # Expose port
 EXPOSE 5173
 

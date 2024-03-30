@@ -1,8 +1,8 @@
 # Use the official PHP 8.2 FPM image as the base image
 FROM php:8.2-fpm
 
-# Set the working directory to /var/www/html
-WORKDIR /var/www/html
+# Set the working directory to /app
+WORKDIR /app/backend
 
 # Install necessary dependencies
 RUN apt-get update && \
