@@ -1,17 +1,20 @@
-//Les plus récents
-
-import { useContext } from "react";
-import { MovieContext } from "../contexts/MovieContext";
 import Card from "../ui/Components/Card";
+import { fetchNewMovies } from "../lib/loaders";
+import { useLoaderData } from "react-router-dom";
+
+
+export async function loader() {
+  const movies = await fetchNewMovies();
+  return movies;
+}
+
 
 export default function New() {
-  const movies = useContext(MovieContext);
-
-  const sortedMovies = [...movies].sort((a, b) => b.released - a.released);
+  const movies = useLoaderData();
 
   return (
     <section className="flex flex-row flex-wrap gap-8 m-10">
-      {sortedMovies.map((movie) => (
+      {movies.map((movie) => (
         <Card key={movie.id} {...movie} />
       ))}
     </section>
@@ -20,4 +23,3 @@ export default function New() {
 
 
 
-// ou tous les films sorties cette années ou l'année dernière

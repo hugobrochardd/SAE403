@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { CategoryContext } from '../../contexts/CategoryContext';
 import { useContext } from 'react';
 import { SearchContext } from '../../contexts/SearchContext';
-import { useEffect } from "react";
 import { Search } from "react-feather";
 import Menus from '../Components/Menu';
 
@@ -33,7 +32,7 @@ export default function NavBar() {
 
 
   const categories = useContext(CategoryContext);
-  const [selectedOption, setSelectedOption] = useState(categories[0].id);
+  const [selectedOption, setSelectedOption] = useState(categories && categories.length > 0 ? categories[0].id : null);
   function handleSelectChange(event) {
     setSelectedOption(event.target.value);
     navigate(`/categories/${event.target.value}`);
@@ -45,32 +44,32 @@ export default function NavBar() {
 
   return (
 
-    <nav className='flex flex-col '>
+    <nav className='flex flex-col'>
 
-      <section className="bg-neutral-800 py-3.5 flex flex-row justify-between items-center px-5">
+      <section className="bg-neutral-800 py-1 flex flex-row justify-between items-center px-5">
         <Link to="/" className="w-28">
           <IconLogo />
         </Link>
-        <section className='flex flex-row gap-3'>
+        <section className='flex flex-row gap-0'>
 
-        <Button intent="bottom" size="medium">
-            <Link className="mb-4 lg:mb-0 lg:pe-2" to="/new">Nouveautés</Link>
+        <Button intent="bottom" size="medium" text="blue">
+            <Link className="font-semibold" to="/new">Nouveautés</Link>
+          </Button>
+
+          <Button intent="bottom" size="medium" text="blue">
+            <Link className="font-semibold" to="/top">Top</Link>
+          </Button>
+
+
+          <Button intent="bottom" size="medium" text="blue">
+            <Link className="font-semibold" to="/selection">Selection</Link>
           </Button>
 
           <Button intent="bottom" size="medium">
-            <Link className="mb-4 lg:mb-0 lg:pe-2" to="/top">Top</Link>
-          </Button>
-
-
-          <Button intent="bottom" size="medium">
-            <Link className="mb-4 lg:mb-0 lg:pe-2" to="/selection">Selection</Link>
-          </Button>
-
-          <Button intent="bottom" size="medium">
-            <select value={selectedOption} onChange={handleSelectChange} className="bg-transparent border-none uppercase appearance-none text-neutral-100">
+            <select value={selectedOption} onChange={handleSelectChange} className="bg-transparent border-none uppercase appearance-none text-neutral-100 font-light">
               <option value="all">Toutes les catégories</option>
               {categories.map((category) => (
-                <option key={category.id} value={category.id}>
+                <option key={category.name} value={category.name}>
                   {category.name}
                 </option>
               ))}
@@ -84,11 +83,11 @@ export default function NavBar() {
 
         
         <div className='flex flex-row gap-4 justify-center items-center'>
+
           <Menus /> 
 
-
           <Button intent="bottom" size="medium">
-                  <a className="mb-4 lg:mb-0 lg:pe-2" href="http://localhost:8080/login">Connexion</a>
+                  <a className="font-light" href="http://localhost:8080/login">Connexion</a>
           </Button>
         </div>
       </section>

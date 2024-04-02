@@ -51,6 +51,9 @@ class Movie
     #[ORM\Column(length: 255)]
     private ?string $une = null;
 
+    #[ORM\Column]
+    private ?bool $spotlight = null;
+
 
     
 
@@ -181,6 +184,18 @@ class Movie
     public function setUne(string $une): static
     {
         $this->une = $une;
+
+        return $this;
+    }
+
+    public function isSpotlight(): ?bool
+    {
+        return $this->spotlight;
+    }
+
+    public function setSpotlight(bool $spotlight): static
+    {
+        $this->spotlight = $spotlight;
 
         return $this;
     }

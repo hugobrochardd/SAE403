@@ -1,19 +1,24 @@
-import { useParams } from "react-router-dom";
-import { useContext } from "react";
-import { MovieContext } from "../contexts/MovieContext";
+import { useNavigate, useLoaderData } from 'react-router-dom';
+import { fetchMovieById } from '../lib/loaders.js';
+
+export async function loader({ params }) {
+  const movies = await fetchMovieById(params.id);
+  return movies;
+}
 
 export default function MovieDetail() {
-    const { id } = useParams();
-    const movies = useContext(MovieContext);
-    
-    const movieId = Number(id);
-    const movie = movies.find(movie => movie.id === movieId);
+  const movie = useLoaderData();
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
 
   return movie ? (
     <div>
       <h2>{movie.name}</h2>
       <p>{movie.description}</p>
-      {/* ... autres détails du film ... */}
+      <button onClick={goBack}>Retourner</button>
     </div>
   ) : (
     <p>Le film demandé n'a pas été trouvé.</p>

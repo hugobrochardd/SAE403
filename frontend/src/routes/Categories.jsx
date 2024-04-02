@@ -1,26 +1,42 @@
 import Card from "../ui/Components/Card";
 import { useParams } from "react-router-dom";
-import { useContext } from "react";
-import { MovieContext } from "../contexts/MovieContext";
+import { fetchMovies, fetchMoviesByCategories } from "../lib/loaders";
+import { useLoaderData } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+
+export async function loader({ params }) {
+  let movies;
+  let name = params.category;
+  if (params.category == "all"){
+    movies = await fetchMovies(1, 50);
+    name = "Tous les films";
+  }
+  else{
+    movies = await fetchMoviesByCategories(params.category);
+  }
+  return { movies, name };
+}
 
 export default function Categories() {
-  const movies = useContext(MovieContext);
   const { category } = useParams();
+  const { movies, name } = useLoaderData({ category });
 
-  let filteredMovies = [];
-  if (movies) {
-    filteredMovies = movies.filter(movie => 
-      movie.category && movie.category.some(cat => cat.id === parseInt(category))
-    );
-  }
+  const navigate = useNavigate();
 
-  console.log(filteredMovies); // Should log the movies now
+  const goBack = () => {
+    navigate(-1);
+  };
 
   return (
-    <section className="flex flex-row flex-wrap gap-8 m-10">
-      {filteredMovies.map((movie) => (
-        <Card key={movie.id} {...movie} />
-      ))}
-    </section>
+    <div>
+      <button onClick={goBack}>Retourner</button>
+      <h1 className="text-4xl font-bold text-center m-10">{name}</h1>
+      <section className="flex flex-row flex-wrap gap-8 m-10">
+        {movies.map((movie) => (
+          <Card key={movie.id} {...movie} />
+        ))}
+      </section>
+    </div>
   );
 }
