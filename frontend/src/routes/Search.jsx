@@ -22,7 +22,7 @@ export default function Search() {
   };
 
   return (
-    <section className="flex flex-row flex-wrap gap-8 m-10">
+    <section className="flex flex-row flex-wrap gap-8 m-10 pt-[4.125rem]">
       <p>Résultat pour {searchTerm}</p>
       {movies.length > 0 ? (
         movies.map((movie) => (

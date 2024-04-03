@@ -15,7 +15,7 @@ export default function MovieDetail() {
   };
 
   return movie ? (
-    <div>
+    <div className="pt-[4.125rem]">
       <h2>{movie.name}</h2>
       <p>{movie.description}</p>
       <button onClick={goBack}>Retourner</button>

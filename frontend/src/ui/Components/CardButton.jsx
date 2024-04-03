@@ -34,11 +34,8 @@ const card = cva(base, {
 export default function Cardbtn({phrase}) {
   return (
           <div className="relative aspect-[0.75] rounded-md max-w-40 bg-main-900 flex flex-col items-center justify-center gap-5">
-              <div className="flex flex-col items-center justify-center">
                 <Plus className="stroke-main-400 size-12" />
                 <h2 className="text-center text-main-400 text-sm font-normal mx-10">{phrase}</h2>
-              </div>
-              <ArrowRight className="stroke-main-400" />
           </div>
 );
 }

@@ -7,7 +7,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { fetchRandomMovies, fetchNewMovies, fetchHighlightMovies } from "../lib/loaders";
 import Button from "../ui/Components/Button";
 import { Link } from "react-router-dom";
-import Categories from "./Categories";
+import { ArrowRight } from "react-feather";
 
 
 export async function loader() {
@@ -20,10 +20,10 @@ export async function loader() {
 
 export default function Home() {
   const { newMovies, highlightMovies, randomMovies } = useLoaderData();
-  const phrases = ["de films récents", "de films de la selection", "de les films bien notés"];
+  const phrases = ["de films récents", "de films de la selection", "de films bien notés"];
 
   return (
-    <div className="flex flex-col gap-11 items-center">
+    <div className="flex flex-col items-center pt-[4.125rem]">
       <section className="max-h-[50rem]">
         <Carousel showThumbs={false} infiniteLoop useKeyboardArrows showStatus={false} interval={5000} emulateTouch={true}>
           {randomMovies.map((movie) => (
@@ -35,8 +35,13 @@ export default function Home() {
       </section>
 
 
-      <section className="flex flex-col flex-nowrap gap-8 m-10 w-full">
-        <h2 className="text-main-400 text-xl font-normal">Nouveautés</h2>
+      <section className="flex flex-col flex-nowrap gap-8 m-10 py-12 w-full px-24">
+        <div className="flex flex-row justify-between">
+          <h2 className="text-main-400 text-xl font-normal">Nouveautés</h2>
+          <Link to="/new" className="">
+            <Button intent="primary" active="true" size="small" text="black" className="flex flex-row text-sm font-medium items-center justify-center gap-3">Voir nos derniers films<ArrowRight className="stroke-black size-4" /></Button>
+          </Link>
+        </div>
         <div className="flex flex-row flex-wrap gap-8">
           {newMovies.map((movie) => (
             <Card key={movie.id} {...movie} />
@@ -49,11 +54,11 @@ export default function Home() {
       </section>
 
 
-      <section className="flex flex-col flex-nowrap gap-8 m-10 items-center">
+      <section className="flex flex-col flex-nowrap gap-8 items-center bg-green-500 py-20 w-full">
         <h3 className="text-neutral-100 uppercase text-sm font-light">Sélection</h3>
         <h2 className="text-main-400 text-xl font-normal">Mis en avant</h2>
-        <p></p>
-        <div className="flex flex-row flex-nowrap gap-8">
+        <p className="text-neutral-100 max-w-[37.5rem] text-center font-extralight mb-12">Découvrez notre sélection spéciale de films captivants, soigneusement choisis pour leur intrigue, leurs performances et leur réalisation remarquable. Plongez dans des histoires inoubliables qui vous transporteront au-delà de l'écran.</p>
+        <div className="flex flex-row flex-nowrap gap-8 mb-12">
           {highlightMovies.map((movie) => (
             <Card key={movie.id} {...movie} />
           ))}
@@ -61,20 +66,26 @@ export default function Home() {
             <Cardbtn phrase={phrases[1]} />
           </Link>
         </div>
+        <Link to="/selection" className="">
+          <Button intent="primary" active="true" size="small" text="black" className="flex flex-row text-sm font-medium items-center justify-center gap-3">Voir la sélection de nos films<ArrowRight className="stroke-black size-4" /></Button>
+        </Link>
       </section>
 
-      <section className="flex flex-col flex-nowrap gap-8 m-10 items-center">
+      <section className="flex flex-col flex-nowrap gap-8 items-center bg-red-600 py-20 w-full">
         <h3 className="text-neutral-100 uppercase text-sm font-light">Sélection</h3>
         <h2 className="text-main-400 text-xl font-normal">Mieux notés</h2>
-        <p></p>
+        <p className="text-neutral-100 max-w-[37.5rem] text-center font-extralight mb-12">Explorez notre collection des films les mieux notés, acclamés par les spectateurs et les critiques. Des œuvres d'art cinématographiques qui vous captiveront par leur narration immersive et leur impact émotionnel. Trouvez votre prochain coup de cœur parmi nos recommandations.</p>
         <div className="flex flex-row flex-wrap gap-8">
           {highlightMovies.map((movie) => (
             <Card key={movie.id} {...movie} />
           ))}
-          <Link className="" to="/new">
+          <Link className="" to="/top">
             <Cardbtn phrase={phrases[2]} />
           </Link>
         </div>
+        <Link to="/selection" className="">
+          <Button intent="primary" active="true" size="small" text="black" className="flex flex-row text-sm font-medium items-center justify-center gap-3">Voir la sélection de nos films<ArrowRight className="stroke-black size-4" /></Button>
+        </Link>
       </section>
     </div>
   );

@@ -13,7 +13,7 @@ export default function New() {
   const movies = useLoaderData();
 
   return (
-    <section className="flex flex-row flex-wrap gap-8 m-10">
+    <section className="flex flex-row flex-wrap gap-8 m-10 pt-[4.125rem]">
       {movies.map((movie) => (
         <Card key={movie.id} {...movie} />
       ))}

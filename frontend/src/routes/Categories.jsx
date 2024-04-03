@@ -29,7 +29,7 @@ export default function Categories() {
   };
 
   return (
-    <div>
+    <div className="pt-[4.125rem]">
       <button onClick={goBack}>Retourner</button>
       <h1 className="text-4xl font-bold text-center m-10">{name}</h1>
       <section className="flex flex-row flex-wrap gap-8 m-10">

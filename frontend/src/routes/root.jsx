@@ -5,6 +5,7 @@ import { CategoryContext } from "../contexts/CategoryContext";
 import NavBar from "../ui/NavBar";
 import { fetchCategories } from "../lib/loaders";
 import { SearchContext } from "../contexts/SearchContext";
+import Footer from "../ui/Components/Footer";
 
 
 export async function loader() {
@@ -22,6 +23,7 @@ export default function Root() {
       <CategoryContext.Provider value={categories}>
         <NavBar />
         <Outlet />
+        <Footer />
       </CategoryContext.Provider>
     </SearchContext.Provider>
   );

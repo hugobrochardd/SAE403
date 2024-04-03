@@ -46,7 +46,7 @@ export default function Spotlight({ category, description, director, highlight, 
                   <div className="flex flex-col items-start gap-4">
                       <h2 className="text-main-400 overflow-hidden whitespace-nowrap">Recommandé à 99%</h2>
                       <Link to={`/movie/${id}`} className="">
-                        <Button intent="primary" size="small" active="true" text="black">Voir le film</Button>
+                        <Button intent="primary" size="small" active="true" text="black" className="font-bold">Voir le film</Button>
                       </Link>
                   </div>
               </div>
