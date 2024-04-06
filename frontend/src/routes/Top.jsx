@@ -31,8 +31,8 @@ export default function Top() {
         <h1 className="text-3xl font-light text-main-400 pt-3 z-20">Top</h1>
       </section>
       <div className="flex flex-row justify-between mx-10 mb-5">
-          <p className="text-2xl font-light text-white">Découvrez nos films les mieux notés</p>
-          <section className="flex flex-row gap-5 text-white items-center justify-center">
+          <p className="text-2xl font-light text-neutral-100">Découvrez nos films les mieux notés</p>
+          <section className="flex flex-row gap-5 text-neutral-100 items-center justify-center">
             <Square className="size-6 mt-1 cursor-pointer" onClick={() => setDisplayMode('grid')} /> {/* Add onClick handler */}
             <div className="text-3xl font-thin">|</div>
             <List className="size-6 mt-1 cursor-pointer" onClick={() => setDisplayMode('list')} /> {/* Add onClick handler */}

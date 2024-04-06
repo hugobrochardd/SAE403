@@ -14,7 +14,6 @@ import { useLayoutEffect } from 'react';
 
 
 export async function loader(params) {
-  console.log(params);
   const movies = await fetchSearchMovies(params.params.searchTerm, 1, 50);
   return movies;
 }
@@ -60,11 +59,11 @@ export default function Search() {
     </section>
     <div className="flex flex-row justify-between mx-10 mb-5">
         <div className="flex flex-row justify-center items-center gap-10">
-          <ChevronLeft className="size-6 cursor-pointer text-white" onClick={goBack} /> 
-          <p className="text-2xl font-light text-white">Résultats pour "{searchTerm}"</p>
-          <p className="text-2xl font-thin text-white">{movies.length} films</p>
+          <ChevronLeft className="size-6 cursor-pointer text-neutral-100" onClick={goBack} /> 
+          <p className="text-2xl font-light text-neutral-100">Résultats pour "{searchTerm}"</p>
+          <p className="text-2xl font-thin text-neutral-100">{movies.length} films</p>
         </div>
-        <section className="flex flex-row gap-5 text-white items-center justify-center">
+        <section className="flex flex-row gap-5 text-neutral-100 items-center justify-center">
           <Square className="size-6 mt-1 cursor-pointer" onClick={() => setDisplayMode('grid')} /> 
           <div className="text-3xl font-thin">|</div>
           <List className="size-6 mt-1 cursor-pointer" onClick={() => setDisplayMode('list')} /> 

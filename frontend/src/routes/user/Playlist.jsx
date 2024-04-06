@@ -25,14 +25,12 @@ export async function loader() {
 async function deleteWatchlist() {
   const user = JSON.parse(Cookies.get('user'));
 
-  const response = await fetch(`http://localhost:8080/api/watchlist/user/${user.id}/delete`, {
+  const response = await fetch(`http://193.168.145.234:8080/api/watchlist/user/${user.id}/delete`, {
     method: 'DELETE',
   });
 
   if (response.ok) {
-    // Refresh the page or update the state to reflect the deleted watchlist
     window.location.reload();
-    // console.log('Watchlist deleted');
   } else {
     console.error('Failed to delete watchlist');
   }
@@ -52,9 +50,6 @@ export default function Playlist() {
   }
 
 
-  console.log(user);
-  console.log(dataWatchlistMovie);
-
 
 
   useLayoutEffect(() => {
@@ -64,7 +59,7 @@ export default function Playlist() {
   return (
 <div className="min-h-screen flex relative flex-col w-full">
   <div className="absolute top-0 left-0 p-6 pt-[6.125rem] flex flex-row gap-4 justify-center items-center">
-      <ChevronLeft className="size-10 cursor-pointer text-white" onClick={goBack} />
+      <ChevronLeft className="size-10 cursor-pointer text-neutral-100" onClick={goBack} />
       <h1 className="text-4xl font-medium text-main-400">Historique</h1>
   </div>
   <section className="absolute top-0 right-0 p-6 pt-[6.325rem] flex flex-row gap-4 justify-center items-center">
@@ -80,8 +75,8 @@ export default function Playlist() {
 
   
   <div className="flex flex-row justify-between px-20 pb-10 w-full pt-[12.125rem] items-center">
-          <p className="text-2xl font-light text-white">Les films que vous avez déja visionnés</p>
-          <section className="flex flex-row gap-5 text-white items-center justify-center">
+          <p className="text-2xl font-light text-neutral-100">Les films que vous avez déja visionnés</p>
+          <section className="flex flex-row gap-5 text-neutral-100 items-center justify-center">
             <Square className="size-6 mt-1 cursor-pointer" onClick={() => setDisplayMode('grid')} /> {/* Add onClick handler */}
             <div className="text-3xl font-thin">|</div>
             <List className="size-6 mt-1 cursor-pointer" onClick={() => setDisplayMode('list')} /> {/* Add onClick handler */}

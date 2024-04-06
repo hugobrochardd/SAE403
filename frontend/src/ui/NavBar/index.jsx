@@ -9,6 +9,9 @@ import { SearchContext } from '../../contexts/SearchContext';
 import { Search } from "react-feather";
 import Menus from '../Components/Menu';
 import { AuthContext } from '../../contexts/AuthContext';
+import { Menu } from 'react-feather';
+import { useEffect } from 'react';
+import { X } from 'react-feather';
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -17,6 +20,14 @@ export default function NavBar() {
   const categories = useContext(CategoryContext);
   const { search, setSearch } = useContext(SearchContext);
   const { isAuthenticated } = useContext(AuthContext);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsSmallScreen(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
 
   const handleSearchClick = () => {
@@ -53,9 +64,19 @@ export default function NavBar() {
     <nav className='flex flex-col fixed z-30 inset-x-0'>
 
       <section className="bg-neutral-800 py-1 flex flex-row justify-between items-center px-5">
+        <div className='flex flex-row gap-2 items-center justify-center'>
+
+      {isSmallScreen && (
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <Menu className='w-6 text-neutral-100'/>
+        </button>
+      )}
+
         <Link to="/" className="w-28">
           <IconLogo />
         </Link>
+        </div>
+        {!isSmallScreen && (
         <section className='flex flex-row gap-0'>
 
           <Button intent="bottom" size="medium" text="blue">
@@ -78,6 +99,7 @@ export default function NavBar() {
             </Button>
         </section>
 
+        )}
         
         <div className='flex flex-row gap-4 justify-center items-center'>
           {isAuthenticated ? (
@@ -89,6 +111,8 @@ export default function NavBar() {
           )}
         </div>
       </section>
+
+            
 
 
 
@@ -124,6 +148,36 @@ export default function NavBar() {
               </button>
             ))}
           </article>
+        </div>
+      )}
+
+
+      {isMenuOpen && (
+        <div className="menu absolute bg-neutral-800 flex inset-0 flex-col z-50 h-screen">
+          <button onClick={() => setIsMenuOpen(false)} className='p-6 text-neutral-100'><X></X></button>
+          <Link className="font-extrabold text-center" to="/new">
+          <Button intent="bottom" size="medium" text="blue" onClick={() => {setIsMenuOpen(false);}}>
+            Nouveautés
+          </Button>
+          </Link>
+
+          <Link className="font-extrabold text-center" to="/top">
+          <Button intent="bottom" size="medium" text="blue" onClick={() => {setIsMenuOpen(false);}}>
+            Top
+          </Button>
+          </Link>
+
+          <Link className="font-extrabold text-center" to="/selection">
+          <Button intent="bottom" size="medium" text="blue" onClick={() => {setIsMenuOpen(false);}}>
+           Sélections
+          </Button>
+          </Link>
+
+          <Button intent="bottom" size="medium" onClick={() => {setIsMenuOpen(false); handleCategoryClick();}}>Catalogue</Button>
+
+          <Button className="flex items-center justify-center" intent="bottom" size="medium" onClick={() => {setIsMenuOpen(false); handleSearchClick();}}>
+            <Search className='w-4'/>
+          </Button>
         </div>
       )}
 

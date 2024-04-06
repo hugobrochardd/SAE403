@@ -26,12 +26,12 @@ export default function New() {
   return (
     <section className="flex flex-col gap-8 pt-[4.125rem] min-h-screen">
       <section className="w-full flex items-center justify-center py-16 bg-[url('../../public/_assets/selection.jpg')] object-cover object-center">
-      <div className="absolute inset-0 bg-black/60"></div>
+      <div className="absolute inset-0 bg-neutral-900/60"></div>
         <h1 className="text-3xl font-light text-main-400 pt-3 z-20">Sélections</h1>
       </section>
       <div className="flex flex-row justify-between mx-10 mb-5">
-          <p className="text-2xl font-light text-white">Découvrez nos films sélectionnés pour vous</p>
-          <section className="flex flex-row gap-5 text-white items-center justify-center">
+          <p className="text-2xl font-light text-neutral-100">Découvrez nos films sélectionnés pour vous</p>
+          <section className="flex flex-row gap-5 text-neutral-100 items-center justify-center">
             <Square className="size-6 mt-1 cursor-pointer" onClick={() => setDisplayMode('grid')} /> {/* Add onClick handler */}
             <div className="text-3xl font-thin">|</div>
             <List className="size-6 mt-1 cursor-pointer" onClick={() => setDisplayMode('list')} /> {/* Add onClick handler */}

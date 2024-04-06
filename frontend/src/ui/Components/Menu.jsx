@@ -37,7 +37,7 @@ export default function Menus() {
       <div>
         <Menu.Button className="text-neutral-100 border-b-2 border-transparent hover:border-b-2 hover:border-b-main-400 uppercase text-sm py-4 flex flex-row gap-2 justify-center items-center">
           {user ? user.Pseudo : 'User'}
-          <User className="size-4 text-white" aria-hidden="true" />
+          <User className="size-4 text-neutral-100" aria-hidden="true" />
         </Menu.Button>
       </div>
 
@@ -50,7 +50,7 @@ export default function Menus() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-neutral-800 ring-black text-neutral-100">
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-neutral-800 ring-neutral-900 text-neutral-100">
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (

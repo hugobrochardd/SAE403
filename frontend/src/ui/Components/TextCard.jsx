@@ -44,10 +44,10 @@ export default function TextCard({ category, description, director, highlight, i
         <div className="aspect-[0.75] rounded-md w-48 ">
           <img src={`../../../public/_assets/${picture}`} alt={name} className="rounded-md aspect-[0.75] object-cover w-full"/>
         </div>
-        <div className="text-white text-sm w-full flex flex-col gap-1 justify-between my-1" onclick="">
+        <div className="text-neutral-100 text-sm w-full flex flex-col gap-1 justify-between my-1" onclick="">
             <h2 className=" text-4xl font-normal">{name}</h2>
             <div className="flex flex-col gap-0 text-sm">
-                <h2 className="text-white font-light opacity-80">{released} - {category[0].name}</h2>
+                <h2 className="text-neutral-100 font-light opacity-80">{released} - {category[0].name}</h2>
                 <h2 className="text-main-400 overflow-hidden whitespace-nowrap opacity-80">Recommandé à 99%</h2>
             </div>
             <p className="max-w-[40rem] text-base font-extralight">{description}</p>

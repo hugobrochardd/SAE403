@@ -13,11 +13,9 @@ export default function Logout() {
     useEffect(() => {
         // Check if the user is already logged out
         if (!Cookies.get('user') && !Cookies.get('token')) {
-            console.log('User is already logged out');
             navigate('/');
         }
 
-        console.log('Executing useEffect');
 
         // Remove the user cookie
         Cookies.remove('user');
@@ -36,7 +34,7 @@ export default function Logout() {
 
     return (
         <div className="flex justify-center items-center min-h-screen">
-            <h1 className='text-2xl text-white font-medium'>Déconnexion en cours...</h1>
+            <h1 className='text-2xl text-neutral-100 font-medium'>Déconnexion en cours...</h1>
         </div>
     );
 }

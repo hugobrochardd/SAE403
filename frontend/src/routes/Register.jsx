@@ -15,7 +15,7 @@ export default function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        const response = await fetch('http://localhost:8080/createUser', {
+        const response = await fetch('http://193.168.145.234:8080/createUser', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -27,15 +27,14 @@ export default function Register() {
             const data = await response.json();
     
             if (response.status === 200) {
-                console.log('Registration successful');
                 setIsRegistrationSuccessful(true);
                 setTimeout(() => setShouldRedirect(true), 3000);
             } else {
-                console.log('Registration failed');
+
                 setIsRegistrationSuccessful(false);
             }
         } else {
-            console.log('Received non-JSON response');
+            setIsRegistrationSuccessful(false);
         }
     };
 
@@ -48,7 +47,7 @@ export default function Register() {
       }, []);
 
     return (
-        <div className='pt-[4.125rem] flex justify-center items-center min-h-screen flex-col gap-4 text-white'>
+        <div className='pt-[4.125rem] flex justify-center items-center min-h-screen flex-col gap-4 text-neutral-100'>
             <h1 className='text-3xl font-bold'>Register</h1>
             <form onSubmit={handleSubmit} className='bg-main-900 p-8 rounded-lg shadow-md flex flex-col gap-4'>
                 <label className=''>
@@ -66,7 +65,7 @@ export default function Register() {
                 <Button intent="primary" active="true" size="small" text="black" className="mt-8">Register</Button>
             </form>
             {isRegistrationSuccessful === null ? null : isRegistrationSuccessful ? <p>Registration successful</p> : <p>Registration failed</p>}
-            <Link to="/login" className='text-white underline text-sm'>Already have an account? Login here</Link>
+            <Link to="/login" className='text-neutral-100 underline text-sm'>Already have an account? Login here</Link>
         </div>
     );
 }

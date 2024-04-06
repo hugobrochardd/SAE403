@@ -36,10 +36,10 @@ export default function Spotlight({ category, description, director, highlight, 
 
   return (
         <div className="relative max-h-[52rem] h-full">
-          <div className="absolute inset-0 bg-black/30"></div>
+          <div className="absolute inset-0 bg-neutral-900/30"></div>
           <img src={`../../../public/_assets/${une}`} alt={name} className="h-full object-cover"/>
             <div className="absolute top-0 left-0 right-0 bottom-0 bg-opacity-50 rounded-md flex flex-col justify-end items-start p-12">
-              <div className="text-white flex flex-col justify-start items-start" onclick="">
+              <div className="text-neutral-100 flex flex-col justify-start items-start" onclick="">
                     <h1 className="flex text-3xl font-semibold">{name}</h1>
                     <div className="flex flex-row gap-2 font-extralight">
                         <h2 className="">{director} , {released}</h2>

@@ -20,7 +20,7 @@ export default function Login() {
         event.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:8080/api/login_check', {
+            const response = await fetch('http://193.168.145.234:8080/api/login_check', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ export default function Login() {
 
 
             if (data.token) {
-                const userResponse = await fetch('http://localhost:8080/api/user', {
+                const userResponse = await fetch('http://193.168.145.234:8080/api/user', {
                     headers: {
                         'Authorization': `Bearer ${data.token}`,
                     },
@@ -75,7 +75,7 @@ export default function Login() {
       }, []);
 
     return (
-        <div className='pt-[4.125rem] flex justify-center items-center min-h-screen flex-col gap-4 text-white'>
+        <div className='pt-[4.125rem] flex justify-center items-center min-h-screen flex-col gap-4 text-neutral-100'>
             <h1 className='text-3xl font-bold '>Login</h1>
             <form onSubmit={handleSubmit} className='bg-main-900 p-8 rounded-lg shadow-md flex flex-col gap-4'>
                 <label className=''>
@@ -88,8 +88,8 @@ export default function Login() {
                 </label>
                 <Button intent="primary" active="true" size="small" text="black" className="mt-8">Log in</Button>
             </form>
-            <p className='text-white'>{message}</p>
-            <Link to="/register" className='text-white underline text-sm'>Vous n'avez pas de compte ? S'inscrire</Link>
+            <p className='text-neutral-100'>{message}</p>
+            <Link to="/register" className='text-neutral-100 underline text-sm'>Vous n'avez pas de compte ? S'inscrire</Link>
         </div>
     );
 }

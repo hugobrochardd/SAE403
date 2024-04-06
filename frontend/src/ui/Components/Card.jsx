@@ -43,17 +43,17 @@ export default function Card({ category, description, director, highlight, id, n
         <div className="relative aspect-[0.75] rounded-md max-w-40">
           <img src={`../../../public/_assets/${picture}`} alt={name} className="rounded-md aspect-[0.75]"/>
           {isHovered && (
-            <div className="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 rounded-md flex flex-col justify-between items-end p-3">
+            <div className="absolute top-0 left-0 right-0 bottom-0 bg-neutral-900 bg-opacity-50 rounded-md flex flex-col justify-between items-end p-3">
               {isAuthenticated ? (
                 <button className="" onclick="">
-                  <Heart className="stroke-white"/>
+                  <Heart className="stroke-neutral-100"/>
                 </button>
               ) : (
                 <button className="" onclick="">
                   <Heart className="hidden"/>
                 </button>
               )}
-              <div className="text-white text-sm w-full" onclick="">
+              <div className="text-neutral-100 text-sm w-full" onclick="">
                   <div className="">
                       <div className="flex flex-row gap-2">
                         <h2 className="font-bold">{released}</h2>

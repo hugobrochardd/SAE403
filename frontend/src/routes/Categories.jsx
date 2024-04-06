@@ -45,8 +45,8 @@ export default function Categories() {
         <h1 className="text-3xl font-light text-main-400 pt-3">{category}</h1>
       </section>
       <div className="flex flex-row justify-between mx-10 mb-5">
-          <p className="text-2xl font-light text-white">Une sélection de films "{category}"</p>
-          <section className="flex flex-row gap-5 text-white items-center justify-center">
+          <p className="text-2xl font-light text-neutral-100">Une sélection de films "{category}"</p>
+          <section className="flex flex-row gap-5 text-neutral-100 items-center justify-center">
             <Square className="size-6 mt-1 cursor-pointer" onClick={() => setDisplayMode('grid')} /> {/* Add onClick handler */}
             <div className="text-3xl font-thin">|</div>
             <List className="size-6 mt-1 cursor-pointer" onClick={() => setDisplayMode('list')} /> {/* Add onClick handler */}

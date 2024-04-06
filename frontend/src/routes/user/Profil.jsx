@@ -31,7 +31,7 @@ export default function Profil() {
   async function updatePseudo(emails, pseudos, ids, passwords) {
     try {
   
-      const response = await fetch('http://localhost:8080/api/updatepseudo', {
+      const response = await fetch('http://193.168.145.234:8080/api/updatepseudo', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -50,7 +50,7 @@ export default function Profil() {
 
       }
 
-      const response1 = await fetch('http://localhost:8080/api/login_check', {
+      const response1 = await fetch('http://193.168.145.234:8080/api/login_check', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ export default function Profil() {
 
 
             if (data1.token) {
-                const userResponse = await fetch('http://localhost:8080/api/user', {
+                const userResponse = await fetch('http://193.168.145.234:8080/api/user', {
                     headers: {
                         'Authorization': `Bearer ${data1.token}`,
                     },
@@ -107,8 +107,7 @@ export default function Profil() {
 
 
     async function updatePassword(email, oldPassword, newPassword, id) {
-        console.log('Updating password for:', { email, newPassword, oldPassword, id });
-        const response = await fetch('http://localhost:8080/api/login_check', {
+        const response = await fetch('http://193.168.145.234:8080/api/login_check', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -126,10 +125,10 @@ export default function Profil() {
         }
 
         const data = await response.json();
-        console.log(data);
+
 
         try {
-          const response = await fetch('http://localhost:8080/api/updatepassword', {
+          const response = await fetch('http://193.168.145.234:8080/api/updatepassword', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -155,7 +154,7 @@ export default function Profil() {
 
     
           if (data.token) {
-            const userResponse = await fetch('http://localhost:8080/api/user', {
+            const userResponse = await fetch('http://193.168.145.234:8080/api/user', {
                 headers: {
                     'Authorization': `Bearer ${data.token}`,
                 },
