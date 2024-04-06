@@ -5,7 +5,6 @@ import { XCircle } from "react-feather";
 export default function ErrorPage() {
   const error = useRouteError();
   const navigate = useNavigate();
-  console.error(error);
 
   return (
     <div className="flex flex-col items-center gap-10 text-center h-screen justify-center">

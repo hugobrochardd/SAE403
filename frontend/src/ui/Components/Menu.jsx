@@ -1,19 +1,43 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { User } from 'react-feather'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
+import { useEffect, useState } from 'react';
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Menus() {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useContext(AuthContext);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      const data = Cookies.get('user');
+      setUser(data ? JSON.parse(data) : null);
+    }
+  }, [isAuthenticated]);
+
+
+
+   
+
+  function logout() {
+    navigate('/logout');
+  }
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="text-neutral-100 border-b-2 border-transparent hover:border-b-2 hover:border-b-main-400 uppercase text-sm py-4 flex flex-row gap-1 justify-center items-center">
-          Options
-          <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
+        <Menu.Button className="text-neutral-100 border-b-2 border-transparent hover:border-b-2 hover:border-b-main-400 uppercase text-sm py-4 flex flex-row gap-2 justify-center items-center">
+          {user ? user.Pseudo : 'User'}
+          <User className="size-4 text-white" aria-hidden="true" />
         </Menu.Button>
       </div>
 
@@ -26,16 +50,16 @@ export default function Menus() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-neutral-800 ring-black text-neutral-100">
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
                 <Link
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    active ? 'bg-main-900 text-neutral-100' : 'text-neutral-100',
+                    'block px-4 py-2 text-base'
                   )}
-                  to="/profile"
+                  to="/profil"
                 >
                   Profil
                 </Link>
@@ -45,30 +69,28 @@ export default function Menus() {
               {({ active }) => (
                 <Link
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    active ? 'bg-main-900 text-neutral-100' : 'text-neutral-100',
+                    'block px-4 py-2 text-base'
                   )}
                   to="/playlist"
                 >
-                  Playlist
+                  Historique
                 </Link>
               )}
             </Menu.Item>
-            <form method="POST" action="#">
               <Menu.Item>
                 {({ active }) => (
                   <button
-                    type="submit"
+                    onClick={logout}
                     className={classNames(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block w-full px-4 py-2 text-left text-sm'
+                      active ? 'bg-main-900 text-neutral-100' : 'text-neutral-100',
+                      'block w-full px-4 py-2 text-left text-base'
                     )}
                   >
-                    Sign out
+                    Se déconnecter
                   </button>
                 )}
               </Menu.Item>
-            </form>
           </div>
         </Menu.Items>
       </Transition>

@@ -10,6 +10,15 @@ import MovieDetail, {loader as movieDetailLoader } from './routes/MovieDetail.js
 import New, {loader as newLoader } from './routes/New.jsx';
 import Selection, {loader as selectionLoader } from './routes/Selection.jsx';
 import Root, {loader as rootLoader} from './routes/root.jsx';
+import Playlist, {loader as playlistLoader} from './routes/user/Playlist.jsx';
+import Login from '../src/routes/Login.jsx';
+import Register from '../src/routes/Register.jsx';
+import Logout from './routes/Logout.jsx';
+import PrivateRoute from './ui/Components/PrivateRoot.jsx';
+import Profil from './routes/user/Profil.jsx';
+import Top, {loader as topLoader} from './routes/Top.jsx';
+
+
 
 
 const router = createBrowserRouter([
@@ -48,7 +57,42 @@ const router = createBrowserRouter([
         path: '/selection',
         element: <Selection />,
         loader: selectionLoader,
+      },
+      {
+        path: '/top',
+        element: <Top />,
+        loader: topLoader,
+      },
+      {
+        path: '/login',
+        element: <Login />
+      },
+      {
+        path: '/register',
+        element: <Register />
+      },
+      {
+        path: '/logout',
+        element: <Logout />
+      },
+      {
+        path: "/profil",
+        element: (
+          <PrivateRoute>
+            <Profil />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/playlist",
+        element: (
+          <PrivateRoute>
+            <Playlist />
+          </PrivateRoute>
+        ),
+        loader: playlistLoader,
       }
+
     ],
   }
 ]);

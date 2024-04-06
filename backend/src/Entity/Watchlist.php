@@ -1,35 +1,29 @@
 <?php
-
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
+use ApiPlatform\Metadata\ApiResource;
+use App\Repository\WatchlistRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-
-
-
-#[ORM\Entity(repositoryClass: CategoryRepository::class)]
-#[Groups(['json_category'])]
-class Category
+#[ORM\Entity(repositoryClass: WatchlistRepository::class)]
+#[ApiResource]
+class Watchlist
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['json_category', 'json_watchlist'])]
+    #[Groups('json_watchlist')]
     private ?int $id = null;
 
-
-    #[ORM\Column(length: 255)]
-    #[Groups(['json_category', 'json_watchlist'])]
-    private ?string $name = null;
-
-
-    #[ORM\ManyToMany(targetEntity: Movie::class, mappedBy: 'category')]
+    #[ORM\ManyToMany(targetEntity: Movie::class, inversedBy: 'watchlists')]
+    #[Groups('json_watchlist')]
     private Collection $movies;
 
+    #[ORM\OneToOne(cascade: ['persist'])]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -39,18 +33,6 @@ class Category
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): static
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     /**
@@ -65,7 +47,6 @@ class Category
     {
         if (!$this->movies->contains($movie)) {
             $this->movies->add($movie);
-            $movie->addCategory($this);
         }
 
         return $this;
@@ -73,16 +54,20 @@ class Category
 
     public function removeMovie(Movie $movie): static
     {
-        if ($this->movies->removeElement($movie)) {
-            $movie->removeCategory($this);
-        }
+        $this->movies->removeElement($movie);
 
         return $this;
     }
 
-    public function __toString(): string
-   {
-       return $this->name;
-   }
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
 
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
 }

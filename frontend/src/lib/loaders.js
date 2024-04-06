@@ -18,7 +18,7 @@ export async function fetchMoviesByCategories(name, page = 1, limit = 50){
 
 
 export async function fetchMovieById(id){
-    let answer = await fetch('http://localhost:8080/api/movies/' + id);
+    let answer = await fetch('http://localhost:8080/api/movie/' + id);
     let data = await answer.json();
     return data;
 }
@@ -59,4 +59,11 @@ export async function fetchSearchMovies(searchTerm, page = 1, limit = 50){
     let data = await answer.json();
     return data;
 }
+
+
+export async function fetchWatchList(userId) {
+    const response = await fetch(`http://localhost:8080/api/watchlist/user/${userId}`);
+    const data = await response.json();
+    return data.movies;
+  }
 

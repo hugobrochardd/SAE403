@@ -8,6 +8,7 @@ import { useContext } from 'react';
 import { SearchContext } from '../../contexts/SearchContext';
 import { Search } from "react-feather";
 import Menus from '../Components/Menu';
+import { AuthContext } from '../../contexts/AuthContext';
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function NavBar() {
   const [showCategories, setShowCategories] = useState(false);
   const categories = useContext(CategoryContext);
   const { search, setSearch } = useContext(SearchContext);
+  const { isAuthenticated } = useContext(AuthContext);
 
 
   const handleSearchClick = () => {
@@ -48,7 +50,7 @@ export default function NavBar() {
 
   return (
 
-    <nav className='flex flex-col fixed z-10 inset-x-0'>
+    <nav className='flex flex-col fixed z-30 inset-x-0'>
 
       <section className="bg-neutral-800 py-1 flex flex-row justify-between items-center px-5">
         <Link to="/" className="w-28">
@@ -78,12 +80,13 @@ export default function NavBar() {
 
         
         <div className='flex flex-row gap-4 justify-center items-center'>
-
-          <Menus /> 
-
-          <Button intent="bottom" size="medium">
-                  <a className="font-light" href="http://localhost:8080/login">Connexion</a>
-          </Button>
+          {isAuthenticated ? (
+            <Menus /> 
+          ) : (
+            <Button intent="bottom" size="medium">
+              <Link className="font-light" to="/login">Connexion</Link>
+            </Button>
+          )}
         </div>
       </section>
 

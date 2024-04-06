@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use App\Entity\Category;
 use App\Entity\Movie;
 use App\Entity\User;
+use App\Entity\Watchlist;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -42,6 +43,8 @@ class DashboardController extends AbstractDashboardController
     yield MenuItem::linkToCrud('Category', 'fas fa-list', Category::class);
     yield MenuItem::linkToCrud('Movie', 'fas fa-list', Movie::class);
     yield MenuItem::linkToCrud('User', 'fas fa-list', User::class);
+    yield MenuItem::linkToCrud('Watchlist', 'fas fa-list', Watchlist::class);
+
     }
 
 
